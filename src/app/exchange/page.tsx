@@ -101,7 +101,7 @@ export default function CryptoExchange() {
         <div>
           <label
             htmlFor="amount"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-800"
           >
             Amount of token to Buy
           </label>
