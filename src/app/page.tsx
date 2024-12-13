@@ -19,7 +19,7 @@ export default function Home() {
   console.log(tokenBalance);
   return (
     <main className="bg-white w-screen flex flex-col gap-5">
-      <Header />
+
       <div className="w-full p-3 flex flex-col gap-5">
         <div className="flex justify-center text-center w-[100%] gap-5 border-purple-600 rounded-[11px] border-[1px]">
           <p>$FTC Balance</p>

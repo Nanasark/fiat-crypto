@@ -3,10 +3,11 @@ import thirdwebIcon from "@public/thirdweb.svg";
 import { ConnectButton } from "thirdweb/react";
 import { client } from "@/app/client";
 import { polygonAmoy } from "thirdweb/chains";
+import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="relative h-[50px] bg-blue-500 w-full">
+    <header className="flex justify-evenly gap-5 relative h-[50px] bg-blue-500 w-full">
       <ConnectButton
         client={client}
         chain={polygonAmoy}
@@ -20,6 +21,21 @@ export default function Header() {
           ],
         }}
       />
+      <Link href="/" className="text-gray-800 hover:text-gray-600">
+        Home
+      </Link>
+         <Link
+        href="/exchange"
+        className="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"
+      >
+       P2P Exchange
+      </Link>
+      <Link
+        href="/dashboard"
+        className="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"
+      >
+        Go to Dashboard
+      </Link>
     </header>
   );
 }
