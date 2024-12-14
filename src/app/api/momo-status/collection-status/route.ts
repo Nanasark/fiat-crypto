@@ -58,7 +58,9 @@ export async function POST(req: NextRequest) {
       }
     );
 
+    console.log("status response", statusResponse)
     const statusData = await statusResponse.json();
+    console.log("status data:", statusData)
 
     if (statusResponse.ok) {
       console.log("Status data retrieved successfully:", statusData);
@@ -104,6 +106,7 @@ async function processTransaction(statusData: any) {
   const pricePerToken = 20;
   const amount = Math.floor(parseFloat(cediAmount) / pricePerToken);
   const sendingAmount = toWei(`${amount}`);
+  
 
   try {
     if (statusData.data?.status === "SUCCESS") {
