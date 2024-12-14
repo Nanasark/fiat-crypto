@@ -112,7 +112,7 @@ async function processTransaction(statusData: any, status:any) {
   
 
   try {
-    if (statusData.data?.status === "SUCCESS") {
+    if (statusData.data?.status === "PENDING") {
       const tx = await fetch(
         `${ENGINE_URL}/contract/${chainId}/${NEXT_PUBLIC_ICO_CONTRACT}/write`,
         {
