@@ -58,15 +58,16 @@ export async function POST(req: NextRequest) {
       }
     );
 
-    console.log("status response", statusResponse)
+    
     const statusData = await statusResponse.json();
-    console.log("status data:", statusData)
+    const {status
+  } = statusData
 
     if (statusResponse.ok) {
       console.log("Status data retrieved successfully:", statusData);
 
-      // Process the transaction based on the retrieved status data
-      await processTransaction(statusData);
+      
+      await processTransaction(statusData, status);
 
       return NextResponse.json({
         success: true,
@@ -88,7 +89,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function processTransaction(statusData: any) {
+async function processTransaction(statusData: any, status:any) {
   const address =
     statusData.data?.accountName && isAddress(statusData.data.accountName)
       ? statusData.data.accountName
@@ -102,6 +103,8 @@ async function processTransaction(statusData: any) {
   if (!address) {
     throw new Error("Address not provided in transaction status");
   }
+  console.log("status", status)
+  console.log("statusData", statusData.data?.status);
 
   const pricePerToken = 20;
   const amount = Math.floor(parseFloat(cediAmount) / pricePerToken);
@@ -109,7 +112,7 @@ async function processTransaction(statusData: any) {
   
 
   try {
-    if (statusData.data?.status === "SUCCESS") {
+    if (status === "SUCCESS") {
       const tx = await fetch(
         `${ENGINE_URL}/contract/${chainId}/${NEXT_PUBLIC_ICO_CONTRACT}/write`,
         {
@@ -133,7 +136,7 @@ async function processTransaction(statusData: any) {
 
       console.log("Transaction sent successfully");
     } else {
-      console.log("Transaction not successful:", statusData.data?.status);
+      console.log("Transaction not successful:", status);
     }
   } catch (error) {
     console.error("Error processing transaction:", error);
