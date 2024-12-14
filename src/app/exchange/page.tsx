@@ -28,16 +28,16 @@ export default function CryptoExchange() {
         body: JSON.stringify({
           customer: {
             phoneNumber: `+${phoneNumber}`,
-            accountName,
+            accountName:address,
             network,
           },
           amount: parseFloat(payingAmount),
           currency: "GHS",
           callbackUrl: `${baseUrl}/api/momo-status/collection-status`,
-          metadata: {
-            userId: address,
-            oderId: "cdscs",
-          },
+          // metadata: {
+          //   userId: address,
+          //   oderId: "cdscs",
+          // },
         }),
       });
       const data = await response.json();

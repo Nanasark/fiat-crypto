@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     const { transactionId } = body;
 
   
-  const metadata = TransactionStorage.getTransaction(transactionId);
+  // const metadata = TransactionStorage.getTransaction(transactionId);
   try {
     const status = await fetch(
       `https://sandbox.offgridlabs.org/collections/mobile-money/status/${transactionId}`,
@@ -47,13 +47,13 @@ export async function POST(req: NextRequest) {
 
     const responseData = await status.json();
     if (status.ok) {
-      await send(responseData,metadata);
+      await send(responseData);
     }
   } catch (error) {}
 }
 
-async function send(statusData: any, metadata: any) {
-  const address = metadata.details.userId;
+async function send(statusData: any) {
+  const address = statusData.data.accountName
   const cediAmount = statusData.data.amount;
 
 

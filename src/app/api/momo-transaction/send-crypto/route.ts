@@ -1,4 +1,4 @@
-import TransactionStorage from "@/app/transactionStorage";
+// import TransactionStorage from "@/app/transactionStorage";
 import { NextRequest, NextResponse } from "next/server";
 
 //This api sends crypto to user after he has paid fiat to merchant
@@ -71,9 +71,9 @@ export async function POST(request: NextRequest) {
     console.log(callbackUrl)
 
     if (response.ok) {
-      const transactionId = responseData.data.transactionId;
+      // const transactionId = responseData.data.transactionId;
 
-      TransactionStorage.addTransaction(transactionId, metadata);
+      // TransactionStorage.addTransaction(transactionId, metadata);
 
       return NextResponse.json({
         success: true,
